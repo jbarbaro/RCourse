@@ -1,65 +1,17 @@
 ---
 title       : Getting Started with DataFrames in R
-description : This chapter explores dataframe basics  
+description : This chapter explores dataframe basics and provides students with a fundamental understanding of how to house data in R. 
 attachments :
   slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
 
---- type:VideoExercise lang:r xp:50 skills:1 key:3807d2b71f
-## Analyze movie ratings
-
-*** =video_link
-//player.vimeo.com/video/154783078
-
---- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:279251eacd
-## A really bad movie
-
-Have a look at the plot that showed up in the viewer to the right. Which type of movie has the worst rating assigned to it?
-
-*** =instructions
-- Adventure
-- Action
-- Animation
-- Comedy
-
-*** =hint
-Have a look at the plot. Which color does the point with the lowest rating have?
-
-*** =pre_exercise_code
-```{r}
-# The pre exercise code runs code to initialize the user's workspace. You can use it for several things:
-
-# 1. Preload a dataset. The code below will read the csv that is stored at the URL's location.
-# The movies variable will be available in the user's console.
-movies <- read.csv("http://s3.amazonaws.com/assets.datacamp.com/course/introduction_to_r/movies.csv")
-
-# 2. Pre-load packages, so that users don't have to do this manually.
-library(ggplot2)
-
-# 3. Create a plot in the viewer, that students can check out while reading the exercise
-ggplot(movies, aes(x = runtime, y = rating, col = genre)) + geom_point()
-```
-
-*** =sct
-```{r}
-# The sct section defines the Submission Correctness Tests (SCTs) used to
-# evaluate the student's response. All functions used here are defined in the 
-# testwhat R package
-
-msg_bad <- "That is not correct!"
-msg_success <- "Exactly! There seems to be a very bad action movie in the dataset."
-
-# Use test_mc() to grade multiple choice exercises. 
-# Pass the correct option (Action, option 2 in the instructions) to correct.
-# Pass the feedback messages, both positive and negative, to feedback_msgs in the appropriate order.
-test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_success, msg_bad, msg_bad)) 
-```
-
 --- type:NormalExercise lang:r xp:100 skills:1 key:a1f92e28d6
-## More movies
+## What is a dataframe
 
-In the previous exercise, you saw a dataset about movies. In this exercise, we'll have a look at yet another dataset about movies!
+> An data frame is a list of equal length vectors that supports both homogeneous and heterogeneous data. 
 
-A dataset with a selection of movies, `movie_selection`, is available in the workspace.
+Preforming meaningful analysis can only be done through the effective maipulation of data. The structuring and storing of data is the first step in this process.
+
+In this lesson we will look at the most commonly used method of storing data in R: `data frames`. Data frames allow you to store heterogenous data in a matrix form. In R each column represents its own vector, by combining vectors into a list we effectively create a data frame. 
 
 *** =instructions
 - Check out the structure of `movie_selection`.
