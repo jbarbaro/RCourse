@@ -7,11 +7,14 @@ attachments :
 --- type:NormalExercise lang:r xp:100 skills:1 key:a1f92e28d6
 ## What is a dataframe
 
-> An data frame is a list of equal length vectors that supports both homogeneous and heterogeneous data. 
+> A data frame is a list of equal length vectors that supports both homogeneous and heterogeneous data. 
 
-Preforming meaningful analysis can only be done through the effective maipulation of data. The structuring and storing of data is the first step in this process.
+In data storage, each row represents a unique instance and each column represents a unique variable.
 
-In this lesson we will look at the most commonly used method of storing data in R: `data frames`. Data frames allow you to store heterogenous data in a matrix form. In R each column represents its own vector, by combining vectors into a list we effectively create a data frame. 
+Data frames are able to store data of different types (numeric, character, boolean) across rows. While data in each column needs to be of the same type.   
+
+`R` as a programming language stores all data as a vector, regardless of how much data is in the vector. This means that a data frame is actually a list of vectors combined to form a table of information. This knowledge will be important when it comes to data manipulating. 
+
 
 *** =instructions
 - Check out the structure of `movie_selection`.
