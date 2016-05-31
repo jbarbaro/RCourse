@@ -1,6 +1,6 @@
 title            : Data Table in R
 author_field     : Next Level Analytics
-description      : <i>An data frame is a list of equal length vectors that supports both homogeneous and heterogeneous data.</i> <p></br></p>Preforming meaningful analysis can only be done through the effective maipulation of data. The structuring and storing of data is the first step in this process. <br> In this lesson we will look at the most commonly used method of storing data in R <strong>data frame</strong>.
+description      : <i>An data frame is a list of equal length vectors that supports both homogeneous and heterogeneous data.</i> <p>reforming meaningful analysis can only be done through the effective maipulation of data. The structuring and storing of data is the first step in this process.</p> <br> In this course we will look at the most commonly used method of storing data in R <strong>data frame</strong>.
 author_bio       : jbarbaro is an awesome DataCamp course creator.<br>You can tell something about yourself <strong>here</strong>.
 difficulty_level : 1
 time_needed      : 1 hour
