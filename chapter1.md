@@ -1,5 +1,5 @@
 ---
-title       : Getting Started with DataFrames in R
+title       : Getting Started with Data Frames in R
 description : This chapter explores dataframe basics and provides students with a fundamental understanding of how to house data in R. 
 attachments :
   slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
@@ -11,16 +11,14 @@ attachments :
 
 In data storage, each row represents a unique instance and each column represents a unique variable.
 
-Data frames are able to store data of different types (numeric, character, boolean) across rows. While data in each column needs to be of the same type.   
+Data frames are able to store data of different types (numeric, character, boolean) across rows. Conversly, data in each column need to be of the same type.   
 
-`R` as a programming language stores all data as a vector, regardless of how much data is in the vector. This means that a data frame is actually a list of vectors combined to form a table of information. This knowledge will be important when it comes to data manipulating. 
+`R` as a programming language stores all data as a vector, regardless of how much data is in the vector. This means that a data frame is actually a list of vectors combined to form a table of information. This knowledge will be important when it comes to data manipulation. 
 
+You will begin by getting a sense for what a data frame looks like in R and what it means for data to be stored as vectors.
 
 *** =instructions
-- Check out the structure of `movie_selection`.
-- Select movies with a rating of 5 or higher. Assign the result to `good_movies`.
-- Use `plot()` to  plot `good_movies$Run` on the x-axis, `good_movies$Rating` on the y-axis and set `col` to `good_movies$Genre`.
-
+- Check out the data frame Easy_Data.
 *** =hint
 - Use `str()` for the first instruction.
 - For the second instruction, you should use `...[movie_selection$Rating >= 5, ]`.
@@ -28,44 +26,23 @@ Data frames are able to store data of different types (numeric, character, boole
 
 *** =pre_exercise_code
 ```{r}
-# Pre-load a package in the workspace
-library(MindOnStats)
-
-# You can prepare the data before the student starts:
-data(Movies)
-movie_selection <- Movies[Movies$Genre %in% c("action", "animated", "comedy"),c("Genre", "Rating", "Run")]
-
-# You can also clean up data so that it's not available in the student's workspace anymore:
-rm(Movies)
+# Create data frame
+Easy_Data <- data.frame(Letter = c(A,B,C,D,E), Numbers = (1,2,3,4,5), Is_True = as.boolean(c(1,0,1,0,1))
 ```
 
 *** =sample_code
 ```{r}
-# movie_selection is available in your workspace
+# Easy_Data is available in your workspace
 
-# Check out the structure of movie_selection
-
-
-# Select movies that have a rating of 5 or higher: good_movies
-
-
-# Plot Run (i.e. run time) on the x axis, Rating on the y axis, and set the color using Genre
-
+# Check out the data frame Easy_data by typing the variable name into your workspace
 ```
 
 *** =solution
 ```{r}
-# movie_selection is available in your workspace
+# Easy_Data is available in your workspace
 
-# Check out the structure of movie_selection
-str(movie_selection)
-
-# Select movies that have a rating of 5 or higher: good_movies
-good_movies <- movie_selection[movie_selection$Rating >= 5, ]
-
-# Plot Run (i.e. run time) on the x axis, Rating on the y axis, and set the color using Genre
-plot(good_movies$Run, good_movies$Rating, col = good_movies$Genre)
-```
+# Check out the data frame Easy_data by typing the variable name into your workspace
+Easy_Data
 
 *** =sct
 ```{r}
