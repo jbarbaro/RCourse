@@ -15,12 +15,12 @@ Data frames are able to store data of different types (numeric, character, boole
 
 `R` as a programming language stores all data as a vector, regardless of how much data is in the vector. This means that a data frame is actually a list of vectors combined to form a table of information. This knowledge will be important when it comes to data manipulation. 
 
-You will begin by getting a sense for what a data frame looks like in R and what it means for data to be stored as vectors.
+You will begin by getting a sense for what a data frame looks like in R.
 
 *** =instructions
-- Check out the data frame Easy_Data.
+- Check out the data frame Easy_Data, by typing it in the R console.
 *** =hint
-- Type Easy_Data into the R consol 
+- Type Easy_Data into the R console
 
 *** =pre_exercise_code
 ```{r}
@@ -68,3 +68,84 @@ test_error()
 # Final message the student will see upon completing the exercise
 success_msg("Good work!")
 ```
+--- type:NormalExercise lang:r xp:100 skills:1 key:a1f92e28d6
+## Creating a simple Data Frame
+
+In this next exercise you will learn how to create a simple data frame.
+
+To create a data frame you will first create vectors of information with equal lengths and then call those objects into the function data.frame.
+
+*** =instructions
+- Create a variable called "Letters" with the letters A:E
+- Create a variable called "Numbers" with the numbers 1:5
+*** =hint
+- Use the c() function to create a vector of letters
+- 
+
+*** =pre_exercise_code
+```{r}
+# Create data frame
+
+```
+
+*** =sample_code
+```{r}
+
+# Create the object Letters
+
+
+# Create the object Numbers
+
+
+# Create a data frame using the objects Letters and Numbers
+```
+
+*** =solution
+```{r}
+# Create the object Letters
+Letters <- c("A","B","C","D","E")
+
+# Create the object Numbers
+
+Numbers <- 1:5
+
+# Create a data frame using the objects Letters and Numbers
+
+data.frame(Letters,Numers)
+```
+
+*** =sct
+```{r}
+# The sct section defines the Submission Correctness Tests (SCTs) used to
+# evaluate the student's response. All functions used here are defined in the 
+# testwhat R package. Documentation can also be found at github.com/datacamp/testwhat/wiki
+test_function(data.frame)
+
+test_object("Letters")
+test_object("Numbers")
+test_function("data.frame")
+
+# Test whether the student correctly used plot()
+# Again, we use the automatically generated feedback here
+#test_function("plot", args = "x")
+#test_function("plot", args = "y")
+#test_function("plot", args = "col")
+
+# Alternativeley, you can use test_function() like this
+# test_function("plot", args = c("x", "y", "col"))
+
+# It's always smart to include the following line of code at the end of your SCTs
+# It will check whether executing the student's code resulted in an error, 
+# and if so, will cause the exercise to fail
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+```
+
+
+
+
+
+
+
