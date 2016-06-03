@@ -25,7 +25,6 @@ You will begin by getting a sense for what a data frame looks like in R and what
 *** =pre_exercise_code
 ```{r}
 # Create data frame
-library(data.frame)
 Easy_Data <- data.frame(Letter = c("A","B","C","D","E"), Numbers = 1:5, Is.True = as.logical((c(1,1,0,1,0))))
 ```
 
