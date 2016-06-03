@@ -1,6 +1,6 @@
 ---
 title       : Getting Started with Data Frames in R
-description : This chapter explores dataframe basics and provides students with a fundamental understanding of how to house data in R. 
+description : This chapter explores data frame basics and provides students with a fundamental understanding of how to house data in R. 
 attachments :
   slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
 
@@ -9,11 +9,13 @@ attachments :
 
 > A data frame is a list of equal length vectors that supports both homogeneous and heterogeneous data. 
 
-In data storage, each row represents a unique instance and each column represents a unique variable.
+Before we dive into working with data frames there are a few things you need to consider about data storage, data frames and R as a programming language.
 
-Data frames are able to store data of different types (numeric, character, boolean) across rows. Conversly, data in each column need to be of the same type.   
+1. In data storage, each row represents a unique instance and each column represents a unique variable.
 
-`R` as a programming language stores all data as a vector, regardless of how much data is in the vector. This means that a data frame is actually a list of vectors combined to form a table of information. This knowledge will be important when it comes to data manipulation. 
+2 . Data frames are so widely used because of their ability to store data of different types (numeric, character, boolean) across rows within a table.
+
+3. `R` as a programming language stores all data as a vector, regardless of how much data is in the vector. This means that a data frame is actually a list of vectors combined to form a table of information. This knowledge will be important when it comes to data manipulation. 
 
 You will begin by getting a sense for what a data frame looks like in R.
 
@@ -71,17 +73,16 @@ success_msg("Good work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Creating a simple Data Frame
 
-In this next exercise you will learn how to create a simple data frame.
+In this first exercise you will learn how to create a simple data frame. 
 
-To create a data frame you will first create vectors of information with equal lengths and then call those objects into the function data.frame.
+To create a data frame you will first need to create vectors of information with equal lengths and then call those objects into the function data.frame.
 
 *** =instructions
 - Create a variable called "Letters" with the letters A:E
 - Create a variable called "Numbers" with the numbers 1:5
-- Create a data frame using the objects Letters and Numbers
+- Create a data frame named `my_first_dataframe` using the objects Letters and Numbers
 *** =hint
 - Use the c() function to create a vector of letters
-- 
 
 *** =pre_exercise_code
 ```{r}
@@ -103,6 +104,7 @@ To create a data frame you will first create vectors of information with equal l
 
 *** =solution
 ```{r}
+
 # Create the object Letters
 Letters <- c("A","B","C","D","E")
 
@@ -112,7 +114,8 @@ Numbers <- 1:5
 
 # Create a data frame using the objects Letters and Numbers
 
-data.frame(Letters,Numbers)
+my_first_dataframe <- data.frame(Letters,Numbers)
+
 ```
 
 *** =sct
@@ -120,9 +123,8 @@ data.frame(Letters,Numbers)
 # The sct section defines the Submission Correctness Tests (SCTs) used to
 # evaluate the student's response. All functions used here are defined in the 
 # testwhat R package. Documentation can also be found at github.com/datacamp/testwhat/wiki
-test_function(data.frame)
 
-test_function("data.frame", args = c("Letters","Numbers")
+test_function("data.frame", args = c("Letters","Numbers"))
 
 # Test whether the student correctly used plot()
 # Again, we use the automatically generated feedback here
