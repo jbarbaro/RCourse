@@ -78,6 +78,7 @@ To create a data frame you will first create vectors of information with equal l
 *** =instructions
 - Create a variable called "Letters" with the letters A:E
 - Create a variable called "Numbers" with the numbers 1:5
+- Create a data frame using the objects Letters and Numbers
 *** =hint
 - Use the c() function to create a vector of letters
 - 
@@ -111,7 +112,7 @@ Numbers <- 1:5
 
 # Create a data frame using the objects Letters and Numbers
 
-data.frame(Letters,Numers)
+data.frame(Letters,Numbers)
 ```
 
 *** =sct
@@ -121,9 +122,7 @@ data.frame(Letters,Numers)
 # testwhat R package. Documentation can also be found at github.com/datacamp/testwhat/wiki
 test_function(data.frame)
 
-test_object("Letters")
-test_object("Numbers")
-test_function("data.frame")
+test_function("data.frame", args = c("Letters","Numbers")
 
 # Test whether the student correctly used plot()
 # Again, we use the automatically generated feedback here
