@@ -25,7 +25,7 @@ You will begin by getting a sense for what a data frame looks like in R and what
 *** =pre_exercise_code
 ```{r}
 # Create data frame
-Easy_Data <- data.frame(Letter = c(A,B,C,D,E), Numbers = (1,2,3,4,5), Is_True = as.boolean(c(1,0,1,0,1))
+Easy_Data <- data.frame(Letter = c(A,B,C,D,E), Numbers = (1,2,3,4,5))
 ```
 
 *** =sample_code
@@ -48,16 +48,6 @@ Easy_Data
 # evaluate the student's response. All functions used here are defined in the 
 # testwhat R package. Documentation can also be found at github.com/datacamp/testwhat/wiki
 
-# Test whether the function str is called with the correct argument, object
-# If it is not called, print something informative
-# If it is called, but called incorrectly, print something else
-#test_function("str", args = "object",
-              not_called_msg = "You didn't call `str()`!",
-              incorrect_msg = "You didn't call `str(object = ...)` with the correct argument, `object`.")
-
-# Test the object, good_movies
-# Notice that we didn't define any feedback here, this will cause automatically 
-# generated feedback to be given to the student in case of an incorrect submission
 test_object("Easy_Data")
 
 # Test whether the student correctly used plot()
