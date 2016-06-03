@@ -20,9 +20,7 @@ You will begin by getting a sense for what a data frame looks like in R and what
 *** =instructions
 - Check out the data frame Easy_Data.
 *** =hint
-- Use `str()` for the first instruction.
-- For the second instruction, you should use `...[movie_selection$Rating >= 5, ]`.
-- For the plot, use `plot(x = ..., y = ..., col = ...)`. 
+- Type Easy_Data into the R consol 
 
 *** =pre_exercise_code
 ```{r}
@@ -53,20 +51,20 @@ Easy_Data
 # Test whether the function str is called with the correct argument, object
 # If it is not called, print something informative
 # If it is called, but called incorrectly, print something else
-test_function("str", args = "object",
+#test_function("str", args = "object",
               not_called_msg = "You didn't call `str()`!",
               incorrect_msg = "You didn't call `str(object = ...)` with the correct argument, `object`.")
 
 # Test the object, good_movies
 # Notice that we didn't define any feedback here, this will cause automatically 
 # generated feedback to be given to the student in case of an incorrect submission
-test_object("good_movies")
+test_object("Easy_Data")
 
 # Test whether the student correctly used plot()
 # Again, we use the automatically generated feedback here
-test_function("plot", args = "x")
-test_function("plot", args = "y")
-test_function("plot", args = "col")
+#test_function("plot", args = "x")
+#test_function("plot", args = "y")
+#test_function("plot", args = "col")
 
 # Alternativeley, you can use test_function() like this
 # test_function("plot", args = c("x", "y", "col"))
