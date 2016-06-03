@@ -68,7 +68,7 @@ test_error()
 # Final message the student will see upon completing the exercise
 success_msg("Good work!")
 ```
---- type:NormalExercise lang:r xp:100 skills:1 key:a1f92e28d6
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Creating a simple Data Frame
 
 In this next exercise you will learn how to create a simple data frame.
