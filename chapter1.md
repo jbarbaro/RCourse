@@ -41,6 +41,7 @@ Easy_Data <- data.frame(Letter = c("A","B","C","D","E"), Numbers = 1:5, Is.True 
 
 # Check out the data frame Easy_data by typing the variable name into your workspace
 Easy_Data
+```
 
 *** =sct
 ```{r}
