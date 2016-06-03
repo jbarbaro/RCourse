@@ -124,7 +124,12 @@ my_first_dataframe <- data.frame(Letters,Numbers)
 # evaluate the student's response. All functions used here are defined in the 
 # testwhat R package. Documentation can also be found at github.com/datacamp/testwhat/wiki
 
-test_function("data.frame", args = c("x","y"))
+test_object("Letters")
+test_object("Numbers")
+test_output_contains("my_first_dataframe")
+
+
+test_function("data.frame")
 
 # Test whether the student correctly used plot()
 # Again, we use the automatically generated feedback here
