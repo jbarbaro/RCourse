@@ -106,7 +106,9 @@ Note: When using the data.frame() function, character variables are imported as 
 
 # Create a data frame using the objects Letters and Numbers
 
+
 # Use str() to see data table attributes
+
 ```
 
 *** =solution
@@ -163,7 +165,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:40d715e0b1
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Changing column and row names in a Data Frame
 
 For a majority of the tutorials in this chapter we will be leveraging the `iris` data set. This simple data set has 5 columns and 150 rows of data which contain attributes for three different species of flowers: Setosa, Versicolor and Virginica. 
@@ -174,9 +176,9 @@ To view the current column names we call our data frame into the `names()` funct
 
 We can reassign column names by assigning a string of new column names to the object `names(iris)`. For example:
 
-names(iris) <- c("Column_One", "Column_Two", "Column_Three", "Column_Four", "Column_Five")
+> names(iris) <- c("Column1", "Column2", "Column3", "Column4", "Column5")
 
-We can also use `colnames` and `rownames` to access the names of columns and rows respectively. If both cases the functions work the same as the `names` function shown above. 
+We can also use `colnames` and `rownames` to access the names of columns and rows respectively. In both cases the functions work the same as the `names` function shown above. 
 
 Note: For most data sets the row name will simply be the row number. 
 
@@ -271,7 +273,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:4576935b4d
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Dimension checking in Data Frames
 
 As we discussed in the first exercise a data frame is similar to a matrix. This means that the size of a data frame is dependent on the number of rows and columns. We can quickly check the dimensions of a data frame using the `dim()` function.
