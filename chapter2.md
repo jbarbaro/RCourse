@@ -5,44 +5,49 @@ attachments :
   slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:a1f92e28d6
-## What is a Data Frame
+## Indexing with a columns's name
 
-> A data frame is a list of equal length vectors that supports both homogeneous and heterogeneous data. 
+A key part of data manipulation is being able to acess values within your data frame. The first technique that you will learn is how to index a column from YOUR data frame. Recall that a column in a data frame is simply one of many vectors within a list that is the data frame. This allows us to easily index a column by using it's name. 
 
-Before we dive into working with data frames there are a few things you need to consider about data storage, data frames and R as a programming language.
+To perform this operation we use the following notation:
 
-1. In data storage, each row should represent a unique instance and each column should represents a unique variable.
+> data.frame$columnname
 
-2. Data frames are so widely used because of their ability to store data of different types (numeric, character, Boolean) across rows within a table. While a data table may resemble a matrix it's important to remember that they are fundamentally different since a matrix can only hold data of the same type.
+The magic is in the "$" operator. This tells R to only return values from the column specified.
 
-3. `R` as a programming language stores all data as a vector, regardless of how much data is in the vector. This means that a data frame is actually a list of vectors combined to form a table of information. This knowledge will be important when it comes to data manipulation. 
+When R returns the values from this call it will return them in the form of a vector and not a column. Why? Because every column is a vector!
 
-You will begin by getting a sense for what a data frame looks like in R.
+Now it's your turn to give it a try 
 
 *** =instructions
-- Check out the data frame Easy_Data, by typing it in the R console.
+- index the Sepal.Length column in iris and assign it to its own variable called s_length
+- print the new variable s_length
 *** =hint
-- Type Easy_Data into the R console
+- The notation should be data.frame$columnname
 
 *** =pre_exercise_code
 ```{r}
-# Create data frame
-Easy_Data <- data.frame(Letter = c("A","B","C","D","E"), Numbers = 1:5, Is.True = as.logical((c(1,1,0,1,0))))
+# recall iris data
+data(iris)
 ```
 
 *** =sample_code
 ```{r}
-# Easy_Data is available in your workspace
+# index Sepal.Length
 
-# Check out the data frame Easy_data by typing the variable name into your workspace
+# Print s_length
 ```
 
 *** =solution
 ```{r}
-# Easy_Data is available in your workspace
+# index Sepal.Length
 
-# Check out the data frame Easy_data by typing the variable name into your workspace
-Easy_Data
+s_length <- iris$Sepal.Length
+
+# Print s_length
+
+s_length
+
 ```
 
 *** =sct
@@ -51,7 +56,8 @@ Easy_Data
 # evaluate the student's response. All functions used here are defined in the 
 # testwhat R package. Documentation can also be found at github.com/datacamp/testwhat/wiki
 
-test_object("Easy_Data")
+test_object("s_length")
+test_output_contains("s_length")
 
 # Test whether the student correctly used plot()
 # Again, we use the automatically generated feedback here
@@ -165,7 +171,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:b7c5b5a262
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Changing column and row names in a Data Frame
 
 For a majority of the tutorials in this chapter we will be leveraging the `iris` data set. This simple data set has 5 columns and 150 rows of data which contain attributes for three different species of flowers: Setosa, Versicolor and Virginica. 
@@ -276,7 +282,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:05c46484ef
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Dimension checking in Data Frames
 
 As we discussed in the first exercise a data frame is similar to a matrix. This means that the size of a data frame is dependent on the number of rows and columns. We can quickly check the dimensions of a data frame using the `dim()` function.
