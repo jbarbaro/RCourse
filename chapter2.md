@@ -5,11 +5,11 @@ attachments :
   slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:a1f92e28d6
-## Indexing with a columns's name
+## Indexing with a column's name
 
 A key part of data manipulation is being able to acess values within your data frame. The first technique that you will learn is how to index a column from YOUR data frame. Recall that a column in a data frame is simply one of many vectors within a list that is the data frame. This allows us to easily index a column by using it's name. 
 
-To perform this operation we use the following notation:
+**Column Name Indexing Notation:**
 
 > data.frame$columnname
 
@@ -77,23 +77,46 @@ test_error()
 success_msg("Good work!")
 ```
 --- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
-## Creating a simple Data Frame
+## Introduction to indexing using Square Brackets
 
-In this first exercise you will learn how to create a simple data frame. 
+Square Bracket indexing is probably the most commonly used form of indexing in R. The reason for this has to do with the fact that it allows the user to index both rows and columns simulataneously. This allows you to extract values, entire columns, entire rows and any combination of rows and columns.
 
-To create a data frame you will first need to create vectors of information with equal lengths and then call those objects into the function data.frame.
+**Square Bracket Indexing Notation**
 
-Note: When using the data.frame() function, character variables are imported as factors or categorical variables. Use the str() function to get to know more about your data frame.
+> data.frame[rows,columns]
 
+For instance if you wanted to index the first column from iris the notation would be:
+
+iris[,1]
+
+First Row only?
+
+iris[1,] Note: The comma is important!
+
+First row and first column?
+
+iris[1,1]
+
+How about the first column and first 5 rows?
+
+iris[1:5,1]
+
+Column 1 and 3 and rows 5 through 10?
+
+iris[5:10,c(1,3)]
+
+Any combination of rows and columns are possible using square bracket notation
 
 *** =instructions
-- Create a variable called "Letters" with the letters A:E
-- Create a variable called "Numbers" with the numbers 1:5
-- Create a data frame named `my_first_dataframe` using the objects Letters and Numbers
-- Print `my_first_dataframe`
-- Use the `str()` function to learn more about your data frame
+- Index the 1st column and 5th row in the data frame iris, assign it to a variable named Index_One and print the output
+- Index just the 3rd and 4th column from iris, assign it to a variable named Index_Two and print the output
+- Challenge: Index row 1, 5 and 10 from iris, assign it to a variable named Index_Three and print the output
+- Challenge: Index column 5 and column 1 from iris in that order assign it to a variable named Index_Four and print the output
+
 *** =hint
-- Use the c() function to create a vector of letters
+- You can use the c() function to explicitly call individual columns
+- data.frame[c(2,5),] would return rows 2 and 5
+- data.frame[c(5,2),] would return rows 5 and 2 in that order
 
 *** =pre_exercise_code
 ```{r}
@@ -104,38 +127,57 @@ Note: When using the data.frame() function, character variables are imported as 
 *** =sample_code
 ```{r}
 
-# Create the object Letters
+# Index the 1st column and 5th row in the data frame iris and assign it to a variable named Index_One
 
+# Print Index_One
 
-# Create the object Numbers
+# Index just the 3rd and 4th column from iris and assign it to a variable named Index_Two
 
+# Print Index_Two
 
-# Create a data frame using the objects Letters and Numbers
+# Challenge: Index row 1, 5 and 10 from iris and assign it to a variable named Index_Three
 
+# Print Index_Three
 
-# Use str() to see data table attributes
+# Challenge: Index column 5 and column 1 from iris in that order and assign it to a variable named Index_Four
 
+# Print Index_Four
 ```
 
 *** =solution
 ```{r}
 
-# Create the object Letters
-Letters <- c("A","B","C","D","E")
+# Index the 1st column and 5th row in the data frame iris and assign it to a variable named Index_One
 
-# Create the object Numbers
+Index_One <- iris[,c(1,5)]
 
-Numbers <- 1:5
+# Print Index_One
 
-# Create a data frame using the objects Letters and Numbers
+Index_One
 
-my_first_dataframe <- data.frame(Letters,Numbers)
+# Index just the 3rd and 4th column from iris and assign it to a variable named Index_Two
 
-my_first_dataframe
+Index_Two <- iris[,3:4]
 
-# Use str() to see data table attributes
+# Print Index_Two
 
-str(my_first_dataframe)
+Index_Two
+
+# Challenge: Index row 1, 5 and 10 from iris and assign it to a variable named Index_Three
+
+Index_Three <- iris[c(1,5,10),]
+
+# Print Index_Three
+
+Index_Three
+
+# Challenge: Index column 5 and column 1 from iris in that order and assign it to a variable named Index_Four
+
+Index_Three <- iris[, c(5,1)]
+
+# Print Index_Four
+
+Index_Four
 
 
 ```
@@ -146,12 +188,16 @@ str(my_first_dataframe)
 # evaluate the student's response. All functions used here are defined in the 
 # testwhat R package. Documentation can also be found at github.com/datacamp/testwhat/wiki
 
-test_object("Letters")
-test_object("Numbers")
-test_output_contains("my_first_dataframe")
+test_object("Index_One")
+test_object("Index_Two")
+test_object("Index_Three")
+test_object("Index_Four")
 
-test_function("data.frame")
-test_function("str")
+test_output_contains("Index_One")
+test_output_contains("Index_Two")
+test_output_contains("Index_Three")
+test_output_contains("Index_Four")
+
 
 # Test whether the student correctly used plot()
 # Again, we use the automatically generated feedback here
@@ -171,8 +217,8 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:bde16471e1
-## Changing column and row names in a Data Frame
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
+## Expanded topics in Square Bracket Indexing Notation
 
 For a majority of the tutorials in this chapter we will be leveraging the `iris` data set. This simple data set has 5 columns and 150 rows of data which contain attributes for three different species of flowers: Setosa, Versicolor and Virginica. 
 
@@ -282,7 +328,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:8b8287cfb5
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Dimension checking in Data Frames
 
 As we discussed in the first exercise a data frame is similar to a matrix. This means that the size of a data frame is dependent on the number of rows and columns. We can quickly check the dimensions of a data frame using the `dim()` function.
