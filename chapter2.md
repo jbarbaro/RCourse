@@ -87,23 +87,23 @@ Square Bracket indexing is probably the most commonly used form of indexing in R
 
 For instance if you wanted to index the first column from iris the notation would be:
 
-iris[, 1]
+iris[ , 1]
 
-First Row only?
+*First Row only?*
 
-iris[1, ] Note: The comma is important!
+iris[ 1, ] Note: The comma is important!
 
-First row and first column?
+*First row and first column?*
 
-iris[1, 1]
+iris[ 1, 1]
 
-How about the first column and first 5 rows?
+*How about the first column and first 5 rows?*
 
-iris[1:5, 1]
+iris[ 1: 5, 1]
 
-Column 1 and 3 and rows 5 through 10?
+*Column 1 and 3 and rows 5 through 10?*
 
-iris[5:10, c(1, 3)]
+iris[ 5: 10, c(1, 3)]
 
 Any combination of rows and columns are possible using square bracket notation
 
@@ -217,7 +217,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:5e2f573a7d
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Expanded topics in Square Bracket Indexing Notation
 
 For a majority of the tutorials in this chapter we will be leveraging the `iris` data set. This simple data set has 5 columns and 150 rows of data which contain attributes for three different species of flowers: Setosa, Versicolor and Virginica. 
@@ -328,7 +328,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:4b6f7d13c4
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Dimension checking in Data Frames
 
 As we discussed in the first exercise a data frame is similar to a matrix. This means that the size of a data frame is dependent on the number of rows and columns. We can quickly check the dimensions of a data frame using the `dim()` function.
