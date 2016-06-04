@@ -217,7 +217,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
+--- type:NormalExercise lang:r xp:100 skills:1 key:5ce69fc553
 ## Expanded topics in Square Bracket Indexing Notation
 
 For a majority of the tutorials in this chapter we will be leveraging the `iris` data set. This simple data set has 5 columns and 150 rows of data which contain attributes for three different species of flowers: Setosa, Versicolor and Virginica. 
@@ -328,7 +328,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
+--- type:NormalExercise lang:r xp:100 skills:1 key:b3b62ee2b3
 ## Dimension checking in Data Frames
 
 As we discussed in the first exercise a data frame is similar to a matrix. This means that the size of a data frame is dependent on the number of rows and columns. We can quickly check the dimensions of a data frame using the `dim()` function.
