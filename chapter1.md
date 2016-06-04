@@ -5,7 +5,7 @@ attachments :
   slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:a1f92e28d6
-## What is a dataframe
+## What is a Data Frame
 
 > A data frame is a list of equal length vectors that supports both homogeneous and heterogeneous data. 
 
@@ -163,8 +163,8 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:092d6e8120
-## Changing column names in a Data Frame
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
+## Changing column and row names in a Data Frame
 
 For a majority of the tutorials in this chapter we will be leveraging the `iris` dataset. This simple dataset has 5 columns and 150 rows of data which contain attributes for three different species of flowers: Setosa, Versicolor and Virginica. 
 
@@ -176,11 +176,18 @@ We can reassign column names by assigning a string of new column names to the ob
 
 names(iris) <- c("Column_One", "Column_Two", "Column_Three", "Column_Four", "Column_Five")
 
+We can also use `colnames` and `rownames` to access the names of columns and rows respectively. If both cases the functions work the same as the `names` function shown above. 
+
+Note: For most datasets the row name will simply be the row number. 
+
+
 Renaming columns is an important skill to have in your data manipulation tool kit. Now its your turn to try out the `names()` function.
 
 *** =instructions
 - Use the `names` function to view the current columns in iris
-- Replace the "." in each column names with "_"
+- Use the `colnames` function to view the current columns in iris
+- Use the `rownames` functino to view the current row names in iris
+- Replace the "." in each column names with "_" using `colnames`
 - Print `iris` 
 
 *** =hint
@@ -199,9 +206,14 @@ Renaming columns is an important skill to have in your data manipulation tool ki
 
 # Use names() to determine the current column names in iris
 
+# Use colnames() to determine the current column names in iris
+
+# Use rownames() to determine the current row names in iris
+
+# Change the column names in iris to use "_" for name breaks using colnames
 
 
-# Change the column names in iris to use "_" for name breaks 
+# Print iris
 
 ```
 
@@ -212,12 +224,21 @@ Renaming columns is an important skill to have in your data manipulation tool ki
 
 names(iris)
 
+# Use colnames() to determine the current column names in iris
+
+colnames(iris)
+
+# Use rownames() to determine the current row names in iris
+
+rownames(iris)
+
 # Change the column names in iris to use "_" for name breaks 
 
-names(iris) <- c("Sepal_Length", "Sepal_Width", "Petal_Length", "Petal_Width", "Species")
+colnames(iris) <- c("Sepal_Length", "Sepal_Width", "Petal_Length", "Petal_Width", "Species")
 
 # Print iris
 iris
+
 ```
 
 *** =sct
@@ -229,6 +250,8 @@ iris
 test_object("iris")
 test_output_contains("iris")
 test_function("names")
+test_function("colnames")
+test_function("rownames")
 
 # Test whether the student correctly used plot()
 # Again, we use the automatically generated feedback here
@@ -248,6 +271,107 @@ test_error()
 success_msg("Good work!")
 ```
 
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
+## Dimension checking in Data Frames
+
+As we discussed in the first exercise a data frame is similar to a matrix. This means that the size of a data frame is dependent on the number of rows and columns. We can quickly check the dimentions of a data frame using the `dim()` function.
+
+The output from the `dim()` function tells us the number of rows followed by the number of columns.
+
+Alternatively, we can explicitly call the number of rows and the number of columns using `nrow()` and `ncol()` respectively. 
+
+The `length()` function is similar to `nrow()` and `ncol()`, but will instead return the number of objects within an object. For example `length` will return "5" for the object x shown below:
+
+x <- c("A","B","C","D","E")
+
+
+Why? Because there are 5 objects (A,B,C,D,E) within the object x.
+
+With this knowledge what do you think the function `length` will return for the data frame iris?
+
+Most people might say the number of rows, but this would be incorrect. The actual answer is the number of columns, but why?
+
+The reason goes back to the R fundamentals we discussed in the first excersise pretaining to the composition of a data frame. Remember that a data frame is simply a list of vectors where each column represents a vector and the list in aggregate creates the data frame. In this case the data frame, iris, is made up of five vector objects: Sepal_Length, Sepal_Width, Petal_Length, Petal_Width and Species. 
+The function `length()` counts the number of objects within an object and in the case of iris there are 5.
+
+Now it's your turn to work with these four functions.
+
+
+*** =instructions
+- Use the `dim()` function to find the number of rows and columns within iris
+- Use the `nrow()` function to find the number of rows within iris
+- Use the `ncol()` function to find the number of columns within iris
+- Use the `length()` function to confirm the answer is 5
+
+*** =hint
+
+*** =pre_exercise_code
+```{r}
+
+
+```
+
+*** =sample_code
+```{r}
+
+# Use the `dim()` function to find the number of rows and columns within iris
+
+
+# Use the `nrow()` function to find the number of rows within iris
+
+
+# Use the `ncol()` function to find the number of columns within iris
+
+
+# Use the `length()` function to confirm the answer is 5
+
+```
+
+*** =solution
+```{r}
+
+# Use the `dim()` function to find the number of rows and columns within iris
+dim(iris)
+
+# Use the `nrow()` function to find the number of rows within iris
+nrow(iris)
+
+# Use the `ncol()` function to find the number of columns within iris
+ncol(iris)
+
+# Use the `length()` function to confirm the answer is 5
+lenght(iris)
+
+```
+
+*** =sct
+```{r}
+# The sct section defines the Submission Correctness Tests (SCTs) used to
+# evaluate the student's response. All functions used here are defined in the 
+# testwhat R package. Documentation can also be found at github.com/datacamp/testwhat/wiki
+
+test_function("dim")
+test_function("nrow")
+test_function("ncol")
+test_function("length")
+
+# Test whether the student correctly used plot()
+# Again, we use the automatically generated feedback here
+#test_function("plot", args = "x")
+#test_function("plot", args = "y")
+#test_function("plot", args = "col")
+
+# Alternativeley, you can use test_function() like this
+# test_function("plot", args = c("x", "y", "col"))
+
+# It's always smart to include the following line of code at the end of your SCTs
+# It will check whether executing the student's code resulted in an error, 
+# and if so, will cause the exercise to fail
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+```
 
 
 
