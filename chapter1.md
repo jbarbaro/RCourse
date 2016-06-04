@@ -13,7 +13,7 @@ Before we dive into working with data frames there are a few things you need to 
 
 1. In data storage, each row should represent a unique instance and each column should represents a unique variable.
 
-2. Data frames are so widely used because of their ability to store data of different types (numeric, character, boolean) across rows within a table. While a data table may resemble a matrix it's important to remember that they are fundamentally different since a matrix can only hold data of the same type.
+2. Data frames are so widely used because of their ability to store data of different types (numeric, character, Boolean) across rows within a table. While a data table may resemble a matrix it's important to remember that they are fundamentally different since a matrix can only hold data of the same type.
 
 3. `R` as a programming language stores all data as a vector, regardless of how much data is in the vector. This means that a data frame is actually a list of vectors combined to form a table of information. This knowledge will be important when it comes to data manipulation. 
 
@@ -163,12 +163,12 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:2eb4894b61
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Changing column and row names in a Data Frame
 
-For a majority of the tutorials in this chapter we will be leveraging the `iris` dataset. This simple dataset has 5 columns and 150 rows of data which contain attributes for three different species of flowers: Setosa, Versicolor and Virginica. 
+For a majority of the tutorials in this chapter we will be leveraging the `iris` data set. This simple data set has 5 columns and 150 rows of data which contain attributes for three different species of flowers: Setosa, Versicolor and Virginica. 
 
-We will begin this exercise by looking at the `names()` function. This function allows us to see the current column names in our dataset. 
+We will begin this exercise by looking at the `names()` function. This function allows us to see the current column names in our data set. 
 
 To view the current column names we call our data frame into the `names()` function. In this case `names(iris)`.
 
@@ -178,7 +178,7 @@ names(iris) <- c("Column_One", "Column_Two", "Column_Three", "Column_Four", "Col
 
 We can also use `colnames` and `rownames` to access the names of columns and rows respectively. If both cases the functions work the same as the `names` function shown above. 
 
-Note: For most datasets the row name will simply be the row number. 
+Note: For most data sets the row name will simply be the row number. 
 
 
 Renaming columns is an important skill to have in your data manipulation tool kit. Now its your turn to try out the `names()` function.
@@ -186,7 +186,7 @@ Renaming columns is an important skill to have in your data manipulation tool ki
 *** =instructions
 - Use the `names` function to view the current columns in iris
 - Use the `colnames` function to view the current columns in iris
-- Use the `rownames` functino to view the current row names in iris
+- Use the `rownames` function to view the current row names in iris
 - Replace the "." in each column names with "_" using `colnames`
 - Print `iris` 
 
@@ -271,10 +271,10 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:cf91c86c1b
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Dimension checking in Data Frames
 
-As we discussed in the first exercise a data frame is similar to a matrix. This means that the size of a data frame is dependent on the number of rows and columns. We can quickly check the dimentions of a data frame using the `dim()` function.
+As we discussed in the first exercise a data frame is similar to a matrix. This means that the size of a data frame is dependent on the number of rows and columns. We can quickly check the dimensions of a data frame using the `dim()` function.
 
 The output from the `dim()` function tells us the number of rows followed by the number of columns.
 
@@ -291,7 +291,7 @@ With this knowledge what do you think the function `length` will return for the 
 
 Most people might say the number of rows, but this would be incorrect. The actual answer is the number of columns, but why?
 
-The reason goes back to the R fundamentals we discussed in the first excersise pretaining to the composition of a data frame. Remember that a data frame is simply a list of vectors where each column represents a vector and the list in aggregate creates the data frame. In this case the data frame, iris, is made up of five vector objects: Sepal_Length, Sepal_Width, Petal_Length, Petal_Width and Species. 
+The reason goes back to the R fundamentals we discussed in the first exercise pertaining to the composition of a data frame. Remember that a data frame is simply a list of vectors where each column represents a vector and the list in aggregate creates the data frame. In this case the data frame, iris, is made up of five vector objects: Sepal_Length, Sepal_Width, Petal_Length, Petal_Width and Species. 
 The function `length()` counts the number of objects within an object and in the case of iris there are 5.
 
 Now it's your turn to work with these four functions.
@@ -340,7 +340,7 @@ nrow(iris)
 ncol(iris)
 
 # Use the `length()` function to confirm the answer is 5
-lenght(iris)
+length(iris)
 
 ```
 
