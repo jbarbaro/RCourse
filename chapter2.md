@@ -217,7 +217,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:5241688740
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Expanded topics in Square Bracket Indexing Notation
 
 Now that you have a sense for how to index a data frame there are a few other tricks you might find useful for your tool kit.
@@ -246,10 +246,10 @@ This will produce all columns but the first.
 
 
 *** =instructions
-- Index the first five rows of column Sepal.Width from iris using the `$` and bracket notation, assign it to a variable named index_one and print the new variable in the console
-- Index the column Petal.Width from iris using the column name using square bracket notation, assign it to a variable named index_two and print the new variable in the console
+- Index the first five rows of the column Sepal.Width from iris using the `$` and bracket notation, assign it to a variable named index_one and print the new variable in the console
+- Index the column Petal.Width from iris with the column name using square bracket notation, assign it to a variable named index_two and print the new variable in the console
 - Return only the second column from iris in column form, assign it to a variable named index_three and print the new variable in the console 
-- Return only the second column from iris in column form, indexed on rows 1 to 5, assign it to a variable named index_four adn print the new variable in the console
+- Return only the second column from iris in column form, indexed on rows 1 to 5, assign it to a variable named index_four and print the new variable in the console
 - Return all but the first two columns from iris, assign it to a variable named index_five and print the new variable in the console
 
 *** =hint
@@ -269,7 +269,7 @@ This will produce all columns but the first.
 # Print index_one
 
 
-#Index the column Petal.Width from iris using the column name using square bracket notation, assign it to a variable named index_two 
+#Index the column Petal.Width from iris with the column name using square bracket notation, assign it to a variable named index_two 
 
 # Print index_two
 
@@ -279,9 +279,9 @@ This will produce all columns but the first.
 # Print index_three
 
 
-# Return only the second column from iris in column form, indexed on rows 1 to 5, assign it to a variable named index_four adn print the new variable in the console
+# Return only the second column from iris in column form, indexed on rows 1 to 5, assign it to a variable named index_four and print the new variable in the console
 
-# Pring index_four
+# Print index_four
 
 
 # Return all but the first two columns from iris, assign it to a variable named index_five
@@ -302,11 +302,11 @@ index_one <- iris$Sepal.Width[1:5]
 
 index_one
 
-#Index the column Petal.Width from iris using the column name is square bracket notation, assign it to a variable named index_two 
+#Index the column Petal.Width from iris with the column name using square bracket notation, assign it to a variable named index_two 
 
 index_two <- iris[,"Petal.Width"]
 # Print index_two
-
+index_two
 
 # Return only the second column in column form, assign it to a variable named index_three
 
@@ -316,11 +316,11 @@ index_three <- iris[ 2 ]
 
 index_three
 
-# Return only the second column from iris in column form, indexed on rows 1 to 5, assign it to a variable named index_four adn print the new variable in the console
+# Return only the second column from iris in column form, indexed on rows 1 to 5, assign it to a variable named index_four
 
 index_four <- iris[1:5,2, drop = F]
 
-# Pring index_four
+# Print index_four
 
 index_four
 
@@ -368,7 +368,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:70a3f4596c
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Indexing Data Frames using the Attach function
 
 The $ notation is pretty handy, but it can become very annoying when you have to type it each time that you want to work with your data. The `attach()` function offers a solution to this. When you pass a data frame through the attach function you are then able to call the columns of the data frame without explicitely calling the data frame first.
