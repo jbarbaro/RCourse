@@ -1,6 +1,6 @@
 ---
 title       : Indexing with Data Frames
-description : This chapter explores the four main ways of indexing data frames in R
+description : This chapter explores the three main ways of indexing data frames in R. We will look at indexing with a column name using the "$" notation, indexing using square bracket notation and indexing using attach. 
 attachments :
   slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
 
@@ -149,7 +149,7 @@ Any combination of rows and columns are possible using square bracket notation
 
 # Index the 1st column and 5th row in the data frame iris and assign it to a variable named Index_One
 
-Index_One <- iris[ ,c(1,5)]
+Index_One <- iris[5, 1]
 
 # Print Index_One
 
@@ -217,37 +217,33 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:deaa19bd6d
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Expanded topics in Square Bracket Indexing Notation
 
-For a majority of the tutorials in this chapter we will be leveraging the `iris` data set. This simple data set has 5 columns and 150 rows of data which contain attributes for three different species of flowers: Setosa, Versicolor and Virginica. 
+Now that you have a sense for how to index a data frame there are a few other tricks you might find useful for your tool kit.
 
-We will begin this exercise by looking at the `names()` function. This function allows us to see the current column names in our data set. 
+For instance, when you index a data frame using a column name you can also index the rows using square brackets.The notation would look something like this:
 
-To view the current column names we call our data frame into the `names()` function. In this case `names(iris)`.
+> data.frame$column_name[rows]
 
-We can reassign column names by assigning a string of new column names to the object `names(iris)`. For example:
+As you might have noticed when you index a data frame on only one column, R will return the output as a vector of values and not a column. In some instances, however, it is useful to have R return a column. You can do this by specifying `drop = FALSE. For example 
 
-> names(iris) <- c("Column1", "Column2", "Column3", "Column4", "Column5")
+> data.frame[,1, drop = FALSE]
 
-We can also use `colnames` and `rownames` to access the names of columns and rows respectively. In both cases the functions work the same as the `names` function shown above. 
+You can also exclude columns and rows when indexing by using a negative sign before the column or row you want to remove. For instance:
 
-Note: For most data sets the row name will simply be the row number. 
+> data.frame[,-1] 
 
+This will produce all columns but the first.
 
-Renaming columns is an important skill to have in your data manipulation tool kit. Now its your turn to try out the `names()` function.
 
 *** =instructions
-- Use the `names` function to view the current columns in iris
-- Use the `colnames` function to view the current columns in iris
-- Use the `rownames` function to view the current row names in iris
-- Replace the "." in each column names with "_" using `colnames`
-- Print `iris` 
+- Index the first five rows of column Sepal.Width using the `$` and bracket notation, assign it to a variable named index_one and print the new variable in the console 
+- Return only the second column in column form, assign it to a variable named index_two and print the new variable in the console 
+- Return all but the first two columns in iris, assign it to a variable named index_three and print the new variable in the console
 
 *** =hint
-- Call the iris data frame into the function `names()`
-- Use c() function to create a vector of new column names
-- Make sure the replacement vector is the same length as the number of columns
+- 
 
 *** =pre_exercise_code
 ```{r}
@@ -258,43 +254,47 @@ Renaming columns is an important skill to have in your data manipulation tool ki
 *** =sample_code
 ```{r}
 
-# Use names() to determine the current column names in iris
+# Index the first five rows of column Sepal.Width using the `$` and bracket notation, assign it to a variable named index_one
 
+# Print index_one
 
-# Use colnames() to determine the current column names in iris
+# Return only the second column in column form, assign it to a variable named index_two
 
+# Print index_two
 
-# Use rownames() to determine the current row names in iris
+# Return all but the first two columns in iris, assign it to a variable named index_three
 
+# Print index_three
 
-# Change the column names in iris to use "_" for name breaks using colnames
-
-
-# Print iris
 
 ```
 
 *** =solution
 ```{r}
 
-# Use names() to determine the current column names in iris
+# Index the first five rows of column Sepal.Width using the `$` and bracket notation, assign it to a variable named index_one
 
-names(iris)
+index_one <- iris$Sepal.Width[1:5]
 
-# Use colnames() to determine the current column names in iris
+# Print index_one
 
-colnames(iris)
+index_one
 
-# Use rownames() to determine the current row names in iris
+# Return only the second column in column form, assign it to a variable named index_two
 
-rownames(iris)
+index_two <- iris[,2,drop=F]
 
-# Change the column names in iris to use "_" for name breaks 
+# Print index_two
 
-colnames(iris) <- c("Sepal_Length", "Sepal_Width", "Petal_Length", "Petal_Width", "Species")
+index_two
 
-# Print iris
-iris
+# Return all but the first two columns in iris, assign it to a variable named index_three
+
+index_three <- iris[,-c(1,2)]
+
+# Print index_three
+
+index_three
 
 ```
 
@@ -304,11 +304,13 @@ iris
 # evaluate the student's response. All functions used here are defined in the 
 # testwhat R package. Documentation can also be found at github.com/datacamp/testwhat/wiki
 
-test_object("iris")
-test_output_contains("iris")
-test_function("names")
-test_function("colnames")
-test_function("rownames")
+test_object("index_one")
+test_object("index_two")
+test_object("index_three")
+
+test_output_contains("index_one")
+test_output_contains("index_two")
+test_output_contains("index_three")
 
 # Test whether the student correctly used plot()
 # Again, we use the automatically generated feedback here
@@ -328,77 +330,41 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:3501769cd6
-## Dimension checking in Data Frames
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
+## Indexing Data Frames using Attach
 
-As we discussed in the first exercise a data frame is similar to a matrix. This means that the size of a data frame is dependent on the number of rows and columns. We can quickly check the dimensions of a data frame using the `dim()` function.
+The $ notation is pretty handy, but it can become very annoying when you have to type it each time that you want to work with your data. The `attach()` function offers a solution to this. When you pass a data frame through the attach function you are then able to call the columns of the data frame without explicitely calling the data frame first.
 
-The output from the `dim()` function tells us the number of rows followed by the number of columns.
+The notation for attach looks as follows
 
-Alternatively, we can explicitly call the number of rows and the number of columns using `nrow()` and `ncol()` respectively. 
-
-The `length()` function is similar to `nrow()` and `ncol()`, but will instead return the number of objects within an object. For example `length` will return "5" for the object x shown below:
-
-x <- c("A","B","C","D","E")
-
-
-Why? Because there are 5 objects (A,B,C,D,E) within the object x.
-
-With this knowledge what do you think the function `length` will return for the data frame iris?
-
-Most people might say the number of rows, but this would be incorrect. The actual answer is the number of columns, but why?
-
-The reason goes back to the R fundamentals we discussed in the first exercise pertaining to the composition of a data frame. Remember that a data frame is simply a list of vectors where each column represents a vector and the list in aggregate creates the data frame. In this case the data frame, iris, is made up of five vector objects: Sepal_Length, Sepal_Width, Petal_Length, Petal_Width and Species. 
-The function `length()` counts the number of objects within an object and in the case of iris there are 5.
-
-Now it's your turn to work with these four functions.
+> attach(data.frame)
+column_name
 
 
 *** =instructions
-- Use the `dim()` function to find the number of rows and columns within iris
-- Use the `nrow()` function to find the number of rows within iris
-- Use the `ncol()` function to find the number of columns within iris
-- Use the `length()` function to confirm the answer is 5
+- Call the variable Petal.Width from the iris data frame using the attach function
 
 *** =hint
-
+- You first need to pass the data frame through the attach function
 *** =pre_exercise_code
 ```{r}
-
 
 ```
 
 *** =sample_code
 ```{r}
 
-# Use the `dim()` function to find the number of rows and columns within iris
-
-
-# Use the `nrow()` function to find the number of rows within iris
-
-
-# Use the `ncol()` function to find the number of columns within iris
-
-
-# Use the `length()` function to confirm the answer is 5
+# Call the variable Petal.Width from the iris data frame using the attach function
 
 ```
 
 *** =solution
 ```{r}
 
-# Use the `dim()` function to find the number of rows and columns within iris
-dim(iris)
+# Call the variable Petal.Width from the iris data frame using the attach function
+attach(iris)
 
-# Use the `nrow()` function to find the number of rows within iris
-nrow(iris)
-
-# Use the `ncol()` function to find the number of columns within iris
-ncol(iris)
-
-# Use the `length()` function to confirm the answer is 5
-length(iris)
-
+Petal.Width
 ```
 
 *** =sct
@@ -407,10 +373,8 @@ length(iris)
 # evaluate the student's response. All functions used here are defined in the 
 # testwhat R package. Documentation can also be found at github.com/datacamp/testwhat/wiki
 
-test_function("dim")
-test_function("nrow")
-test_function("ncol")
-test_function("length")
+test_function("attach")
+test_output_contains("Petal.Width")
 
 # Test whether the student correctly used plot()
 # Again, we use the automatically generated feedback here
