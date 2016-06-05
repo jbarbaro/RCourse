@@ -1,6 +1,6 @@
 ---
 title       : Indexing with Data Frames
-description : This chapter explores the three main ways of indexing data frames in R. We will look at indexing with a column name using the "$" notation, indexing using square bracket notation and indexing using attach. 
+description : This chapter explores the three main ways of indexing data frames in R. We will look at indexing with a column name using the "$" notation, indexing using square bracket notation and indexing using the attach() function. 
 attachments :
   slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
 
@@ -217,22 +217,22 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:a936a0f5dd
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Expanded topics in Square Bracket Indexing Notation
 
 Now that you have a sense for how to index a data frame there are a few other tricks you might find useful for your tool kit.
 
 For instance, when you index a data frame using a column name you can also index the rows using square brackets.The notation would look something like this:
 
-> data.frame$column_name[rows]
+> data.frame$column_name[ rows ]
 
 As you might have noticed when you index a data frame on only one column, R will return the output as a vector of values and not a column. In some instances, however, it is useful to have R return a column. You can do this by specifying `drop = FALSE. For example 
 
-> data.frame[,1, drop = FALSE]
+> data.frame[ , 1, drop = FALSE ]
 
 You can also exclude columns and rows when indexing by using a negative sign before the column or row you want to remove. For instance:
 
-> data.frame[,-1] 
+> data.frame[ , -1 ] 
 
 This will produce all columns but the first.
 
@@ -330,15 +330,15 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:83f461d3e4
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Indexing Data Frames using Attach
 
 The $ notation is pretty handy, but it can become very annoying when you have to type it each time that you want to work with your data. The `attach()` function offers a solution to this. When you pass a data frame through the attach function you are then able to call the columns of the data frame without explicitely calling the data frame first.
 
 The notation for attach looks as follows
 
-> attach(data.frame)
-column_name
+> attach(data.frame) 
+<br>column_name</br>
 
 
 *** =instructions
