@@ -1,6 +1,6 @@
 ---
 title       : Indexing with Data Frames
-description : This chapter explores the three main ways of indexing data frames in R. We will look at indexing with a column name using the "$" notation, indexing using square bracket notation and indexing using the attach() function. 
+description : This chapter explores the three main ways of indexing data frames in R. We will look at indexing with a column name using the "$" notation, indexing using square bracket notation and indexing using the attach function. 
 attachments :
   slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
 
@@ -217,7 +217,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:7cb0253737
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Expanded topics in Square Bracket Indexing Notation
 
 Now that you have a sense for how to index a data frame there are a few other tricks you might find useful for your tool kit.
@@ -226,9 +226,17 @@ For instance, when you index a data frame using a column name you can also index
 
 > data.frame$column_name[ rows ]
 
-As you might have noticed when you index a data frame on only one column, R will return the output as a vector of values and not a column. In some instances, however, it is useful to have R return a column. You can do this by specifying `drop = FALSE. For example 
+Alternatively, when using square bracket notation to index a column you can also use the column name not just it's numbered position in the data frame.
 
-> data.frame[ , 1, drop = FALSE ]
+> data.frame[, " column_name " ]
+
+As you might have noticed when you index a data frame on only one column, R will return the output as a vector of values and not a column. In some instances, however, it is useful to have R return a column. You can do this by specifying the column position or column name in the square bracket without any commas. For instance:
+
+> data.frame["column_name"]
+
+This can be limiting though because you are not able to index rows simulataneously. To do this we need to set drop = FALSE. 
+
+> data.frame[ 1 : 5 , 1, drop = FALSE ]
 
 You can also exclude columns and rows when indexing by using a negative sign before the column or row you want to remove. For instance:
 
@@ -238,12 +246,14 @@ This will produce all columns but the first.
 
 
 *** =instructions
-- Index the first five rows of column Sepal.Width using the `$` and bracket notation, assign it to a variable named index_one and print the new variable in the console 
-- Return only the second column in column form, assign it to a variable named index_two and print the new variable in the console 
-- Return all but the first two columns in iris, assign it to a variable named index_three and print the new variable in the console
+- Index the first five rows of column Sepal.Width from iris using the `$` and bracket notation, assign it to a variable named index_one and print the new variable in the console
+- Index the column Petal.Width from iris using the column name using square bracket notation, assign it to a variable named index_two and print the new variable in the console
+- Return only the second column from iris in column form, assign it to a variable named index_three and print the new variable in the console 
+- Return only the second column from iris in column form, indexed on rows 1 to 5, assign it to a variable named index_four adn print the new variable in the console
+- Return all but the first two columns from iris, assign it to a variable named index_five and print the new variable in the console
 
 *** =hint
-- 
+
 
 *** =pre_exercise_code
 ```{r}
@@ -254,17 +264,29 @@ This will produce all columns but the first.
 *** =sample_code
 ```{r}
 
-# Index the first five rows of column Sepal.Width using the `$` and bracket notation, assign it to a variable named index_one
+# Index the first five rows of column Sepal.Width from iris using the `$` and bracket notation, assign it to a variable named index_one
 
 # Print index_one
 
-# Return only the second column in column form, assign it to a variable named index_two
+
+#Index the column Petal.Width from iris using the column name using square bracket notation, assign it to a variable named index_two 
 
 # Print index_two
 
-# Return all but the first two columns in iris, assign it to a variable named index_three
+
+# Return only the second column from iris in column form, assign it to a variable named index_three
 
 # Print index_three
+
+
+# Return only the second column from iris in column form, indexed on rows 1 to 5, assign it to a variable named index_four adn print the new variable in the console
+
+# Pring index_four
+
+
+# Return all but the first two columns from iris, assign it to a variable named index_five
+
+# Print index_five
 
 
 ```
@@ -280,21 +302,35 @@ index_one <- iris$Sepal.Width[1:5]
 
 index_one
 
-# Return only the second column in column form, assign it to a variable named index_two
+#Index the column Petal.Width from iris using the column name is square bracket notation, assign it to a variable named index_two 
 
-index_two <- iris[,2,drop=F]
-
+index_two <- iris[,"Petal.Width"]
 # Print index_two
 
-index_two
 
-# Return all but the first two columns in iris, assign it to a variable named index_three
+# Return only the second column in column form, assign it to a variable named index_three
 
-index_three <- iris[,-c(1,2)]
+index_three <- iris[ 2 ]
 
 # Print index_three
 
 index_three
+
+# Return only the second column from iris in column form, indexed on rows 1 to 5, assign it to a variable named index_four adn print the new variable in the console
+
+index_four <- iris[1:5,2, drop = F]
+
+# Pring index_four
+
+index_four
+
+# Return all but the first two columns in iris, assign it to a variable named index_five
+
+index_five <- iris[,-c(1,2)]
+
+# Print index_five
+
+index_five
 
 ```
 
@@ -307,10 +343,12 @@ index_three
 test_object("index_one")
 test_object("index_two")
 test_object("index_three")
+test_object("index_four")
 
 test_output_contains("index_one")
 test_output_contains("index_two")
 test_output_contains("index_three")
+test_output_contains("index_four")
 
 # Test whether the student correctly used plot()
 # Again, we use the automatically generated feedback here
@@ -330,8 +368,8 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:4f1111730a
-## Indexing Data Frames using Attach
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
+## Indexing Data Frames using the Attach function
 
 The $ notation is pretty handy, but it can become very annoying when you have to type it each time that you want to work with your data. The `attach()` function offers a solution to this. When you pass a data frame through the attach function you are then able to call the columns of the data frame without explicitely calling the data frame first.
 
