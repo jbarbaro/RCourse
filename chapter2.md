@@ -217,7 +217,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
+--- type:NormalExercise lang:r xp:100 skills:1 key:7cb0253737
 ## Expanded topics in Square Bracket Indexing Notation
 
 Now that you have a sense for how to index a data frame there are a few other tricks you might find useful for your tool kit.
@@ -330,7 +330,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
+--- type:NormalExercise lang:r xp:100 skills:1 key:4f1111730a
 ## Indexing Data Frames using Attach
 
 The $ notation is pretty handy, but it can become very annoying when you have to type it each time that you want to work with your data. The `attach()` function offers a solution to this. When you pass a data frame through the attach function you are then able to call the columns of the data frame without explicitely calling the data frame first.
