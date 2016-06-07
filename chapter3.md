@@ -191,7 +191,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
+--- type:NormalExercise lang:r xp:100 skills:1 key:0d43297b56
 ## Creating New Rows and Columns in DataFrames
 
 Some instance you might need to create a whole new row or a whole new column of information. Doing this is quite easy and only takes a couple steps 
@@ -301,7 +301,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
+--- type:NormalExercise lang:r xp:100 skills:1 key:88e53552cb
 ## Applying Functions with Data Frames
 
 The last topic we will discuss with regards to data frames is applying functions to preform calculations with the data held in the data frame. We can use the `apply` function to perform different operations accross both the columns and rows in our data frame. 
