@@ -15,8 +15,8 @@ You can easily create an empty data frame by assigning `dataframe()` to a variab
 
 In some instances you may already know the column names you want for the data table but not the data. In this case you can prepopulate the data frame with empty columns by passing a call for the type of variable you want the column to be. For instance:
 
-> number_column <- numeric() 
-<br> x <- data.frame(number_column) </br>
+> numberColumn <- numeric() 
+<br> x <- data.frame(numberColumn) </br>
 
 As shown above, you can then create an empty data frame by passing the empty variable vectors through the data frame function like you did when creating a data frame with values.
 
@@ -104,11 +104,11 @@ The technique for replacing/ adding values in data frame is simple. First you in
 
 For instance:
 
-> data.frame[1,2] <- new_value
+> data.frame[ 1 , 2 ] <- new_value
 
 You can also replace an entire column or row as long as the vector you are replacing with is the same length
 
-> data.frame[,2] <- new_vector_of_values
+> data.frame[ , 2 ] <- new_vector
 
 
 *** =instructions
@@ -191,24 +191,24 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:267a0e2e33
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Creating New Rows and Columns in DataFrames
 
 Some instance you might need to create a whole new row or a whole new column of information. Doing this is quite easy and only takes a couple steps 
 
 **Creating a new column**
 
-> data.frame$new_column_name <- new_vector_of_values
+> data.frame$new_column <- newVector
 
 Adding a new column begins as though you were going to index a column already in the data frame using the "$" notation. Instead, however, you type the new column name and assign that new column a vector of values associated with it.
 
-**Creating a new row **
+**Creating a new row**
 
 Creating a new row is a little different. In this case we use the function `rbind` and pass through it the original data frame and the new row we want to add.
 
 For example:
 
-> data.frame <- rbind( data_frame , new_row )
+> data.frame <- rbind( data.frame , new_row )
 
 
 
@@ -301,7 +301,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:6eb01c9aed
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Applying Functions with Data Frames
 
 The last topic we will discuss with regards to data frames is applying functions to preform calculations with the data held in the data frame. We can use the `apply` function to perform different operations accross both the columns and rows in our data frame. 
@@ -314,8 +314,8 @@ For our excerises we will take a look at the iris data set once again.
 
 *** =instructions
 - Create a new dataset named iris2 with only numeric information 
-- Calculate the sum of each column and assign the output to a variable called sum_df, print sum_df
-- Determine the mean of each row and assign the output to a variable called mean_df, print mean_df
+- Calculate the sum of each column and assign the output to a variable called `sum_df`, print `sum_df`
+- Determine the mean of each row and assign the output to a variable called `mean_df`, print `mean_df`
 
 *** =hint
 - Only the first four columns are numeric
