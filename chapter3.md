@@ -1,29 +1,33 @@
 ---
 title       : Beyond the Basics with Data Frames
-description : This chapter explores the three main ways of indexing data frames in R. We will look at indexing with a column name using the "$" notation, indexing using square bracket notation and indexing using the attach function. 
+description : In this chapter we look at other commonly used techniques with data frames that will assist you in data analytics.
 attachments :
   slides_link : https://s3.amazonaws.com/assets.datacamp.com/course/teach/slides_example.pdf
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:a1f92e28d6
 ## Creating Empty Data Frames 
 
-A key part of data manipulation is being able to acess values within your data frame. The first technique that you will learn is how to index a column from YOUR data frame. Recall that a column in a data frame is simply one of many vectors within a list that is the data frame. This allows us to easily index a column by using it's name. 
+In some instances it is useful to create an empty data frame. Think of a situation where the data being populated in a data frame is done so using a loop, in this scenario having an empty data frame is nessissary.
 
-**Column Name Indexing Notation:**
+You can easily create an empty data frame by assigning `dataframe()` to a variable, for instance
 
-> data.frame$columnname
+> x <- data.frame()
 
-The magic is in the "$" operator. This tells R to only return values from the column specified.
+In some instances you may already know the column names you want for the data table but not the data. In this case you can prepopulate the data frame with empty columns by passing a call for the type of variable you want the column to be. For instance:
 
-When R returns the values from this call it will return them in the form of a vector and not a column. Why? Because every column is a vector!
+> number_column <- numeric() 
+<br> x <- data.frame(number_column) </br>
 
-Now it's your turn to give it a try 
+As shown above, you can then create an empty data frame by passing the empty variable vectors through the data frame function like you did when creating a data frame with values.
+
+
 
 *** =instructions
-- index the Sepal.Length column in iris and assign it to its own variable called s_length
-- print the new variable s_length
+- Create an empty data frame named `df_empty` that has a column named `numeric_col` which is of type numeric and a second column named `char_col` which is of type character
+- Print `df_empty`
 *** =hint
-- The notation should be data.frame$columnname
+- First create `numeric_col` and `char_col` then pass them through `data.frame()`
+- To set a empty vector of type character use `character()`
 
 *** =pre_exercise_code
 ```{r}
@@ -33,20 +37,33 @@ data(iris)
 
 *** =sample_code
 ```{r}
-# index Sepal.Length
+# Create numeric_col
 
-# Print s_length
+# Create char_col
+
+# Create a new empty data frame named df_empty
+
+# Print df_empty
 ```
 
 *** =solution
 ```{r}
-# index Sepal.Length
+# Create numeric_col
 
-s_length <- iris$Sepal.Length
+numeric_col <- numeric()
 
-# Print s_length
+# Create char_col
 
-s_length
+char_col <- character()
+
+# Create a new empty data frame named df_empty
+
+df_empty <- data.frame(numeric_col,char_col)
+
+# Print df_empty
+
+df_empty
+
 
 ```
 
@@ -56,8 +73,10 @@ s_length
 # evaluate the student's response. All functions used here are defined in the 
 # testwhat R package. Documentation can also be found at github.com/datacamp/testwhat/wiki
 
-test_object("s_length")
-test_output_contains("s_length")
+test_object("numeric_col")
+test_object("char_col")
+test_object("df_empty")
+test_output_contains("df_empty")
 
 # Test whether the student correctly used plot()
 # Again, we use the automatically generated feedback here
@@ -79,106 +98,67 @@ success_msg("Good work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Changing information within a Data Frame
 
-Square Bracket indexing is probably the most commonly used form of indexing in R. The reason for this has to do with the fact that it allows the user to index both rows and columns simulataneously. This allows you to extract values, entire columns, entire rows and any combination of rows and columns.
+In some instances you may need to change values or add values into an existing data frame. Think of an istance where a value is set as NA but you know the value and need to replace the NA. 
 
-**Square Bracket Indexing Notation**
+The technique for replacing/ adding values in data frame is simple. First you index the data frame to the position you want to change, and then you assign it a value. 
 
-> data.frame[rows,columns]
+For instance:
 
-For instance if you wanted to index the first column from iris the notation would be:
+> data.frame[1,2] <- new_value
 
-iris[ , 1 ]
+You can also replace an entire column or row as long as the vector you are replacing with is the same length
 
-*First Row only?*
+> data.frame[,2] <- new_vector_of_values
 
-iris[ 1, ] Note: The comma is important!
-
-*First row and first column?*
-
-iris[ 1 , 1 ]
-
-*How about the first column and first 5 rows?*
-
-iris[ 1 : 5 , 1 ]
-
-*Column 1 and 3 and rows 5 through 10?*
-
-iris[ 5: 10 , c( 1 , 3 ) ]
-
-Any combination of rows and columns are possible using square bracket notation
 
 *** =instructions
-- Index the 1st column and 5th row in the data frame iris, assign it to a variable named Index_One and print the output
-- Index just the 3rd and 4th column from iris, assign it to a variable named Index_Two and print the output
-- Challenge: Index row 1, 5 and 10 from iris, assign it to a variable named Index_Three and print the output
-- Challenge: Index column 5 and column 1 from iris in that order assign it to a variable named Index_Four and print the output
+- `test_df` is a pre populated data frame with two columns. The first column is numeric and the second is a character vector. Begin by viewing `test_df`
+- Replace the `NA` value in `test_df` with the number 3
+- Change the character column to values `f,g,h,i,j` in one call
+- Print `test_df`
 
 *** =hint
-- You can use the c() function to explicitly call individual columns
-- data.frame[c(2,5),] would return rows 2 and 5
-- data.frame[c(5,2),] would return rows 5 and 2 in that order
+- To assign the character vector new values in one call you must first create a vector of new values
 
 *** =pre_exercise_code
 ```{r}
 # Create data frame
 
+test_df <- data.frame(numeric = c(1:2,NA,4:5), character = c("a","b","c","d","e"))
+
 ```
 
 *** =sample_code
 ```{r}
 
-# Index the 1st column and 5th row in the data frame iris and assign it to a variable named Index_One
+# View test_df
 
-# Print Index_One
+# Replace the NA value in test_df
 
-# Index just the 3rd and 4th column from iris and assign it to a variable named Index_Two
+# Change the values in the character column
 
-# Print Index_Two
+# Print test_df
 
-# Challenge: Index row 1, 5 and 10 from iris and assign it to a variable named Index_Three
-
-# Print Index_Three
-
-# Challenge: Index column 5 and column 1 from iris in that order and assign it to a variable named Index_Four
-
-# Print Index_Four
 ```
 
 *** =solution
 ```{r}
 
-# Index the 1st column and 5th row in the data frame iris and assign it to a variable named Index_One
+# View test_df
 
-Index_One <- iris[5, 1]
+test_df
 
-# Print Index_One
+# Replace the NA value in test_df
 
-Index_One
+test_df[3,1] <- 3
 
-# Index just the 3rd and 4th column from iris and assign it to a variable named Index_Two
+# Change the values in the character column
 
-Index_Two <- iris[,3:4]
+test_df[,2] <- c("f","g","h","i","j")
 
-# Print Index_Two
+# Print test_df
 
-Index_Two
-
-# Challenge: Index row 1, 5 and 10 from iris and assign it to a variable named Index_Three
-
-Index_Three <- iris[c(1,5,10),]
-
-# Print Index_Three
-
-Index_Three
-
-# Challenge: Index column 5 and column 1 from iris in that order and assign it to a variable named Index_Four
-
-Index_Four <- iris[, c(5,1)]
-
-# Print Index_Four
-
-Index_Four
-
+test_df
 
 ```
 
@@ -188,15 +168,9 @@ Index_Four
 # evaluate the student's response. All functions used here are defined in the 
 # testwhat R package. Documentation can also be found at github.com/datacamp/testwhat/wiki
 
-test_object("Index_One")
-test_object("Index_Two")
-test_object("Index_Three")
-test_object("Index_Four")
+test_object("test_df")
+test_output_contains("test_df")
 
-test_output_contains("Index_One")
-test_output_contains("Index_Two")
-test_output_contains("Index_Three")
-test_output_contains("Index_Four")
 
 
 # Test whether the student correctly used plot()
@@ -217,120 +191,85 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:353e5b5e5d
-## Creating New Columns in DataFrames
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
+## Creating New Rows and Columns in DataFrames
 
-Now that you have a sense for how to index a data frame there are a few other tricks you might find useful for your tool kit.
+Some instance you might need to create a whole new row or a whole new column of information. Doing this is quite easy and only takes a couple steps 
 
-For instance, when you index a data frame using a column name you can also index the rows using square brackets.The notation would look something like this:
+**Creating a new column**
 
-> data.frame$column_name[ rows ]
+> data.frame$new_column_name <- new_vector_of_values
 
-Alternatively, when using square bracket notation to index a column you can also use the column name not just it's numbered position in the data frame.
+Adding a new column begins as though you were going to index a column already in the data frame using the "$" notation. Instead, however, you type the new column name and assign that new column a vector of values associated with it.
 
-> data.frame[, " column_name " ]
+**Creating a new row **
 
-As you might have noticed when you index a data frame on only one column, R will return the output as a vector of values and not a column. In some instances, however, it is useful to have R return a column. You can do this by specifying the column position or column name in the square bracket without any commas. For instance:
+Creating a new row is a little different. In this case we use the function `rbind` and pass through it the original data frame and the new row we want to add.
 
-> data.frame["column_name"]
+For example:
 
-This can be limiting though because you are not able to index rows simulataneously. To do this we need to set drop = FALSE. 
+> data.frame <- rbind( data_frame , new_row )
 
-> data.frame[ 1 : 5 , 1, drop = FALSE ]
-
-You can also exclude columns and rows when indexing by using a negative sign before the column or row you want to remove. For instance:
-
-> data.frame[ , -1 ] 
-
-This will produce all columns but the first.
 
 
 *** =instructions
-- Index the first five rows of the column Sepal.Width from iris using the `$` and bracket notation, assign it to a variable named index_one and print the new variable in the console
-- Index the column Petal.Width from iris with the column name using square bracket notation, assign it to a variable named index_two and print the new variable in the console
-- Return only the second column from iris in column form, assign it to a variable named index_three and print the new variable in the console 
-- Return only the second column from iris in column form, indexed on rows 1 to 5, assign it to a variable named index_four and print the new variable in the console
-- Return all but the first two columns from iris, assign it to a variable named index_five and print the new variable in the console
+- Using the data frame `test_df` from the last exercise add a new column of letters g:k, name the column character_2
+- Using the data frame `test_df` add a new row sequentially expanding on the columns numeric, character and character_2
 
 *** =hint
-
+- Make sure to assign the output to `test_df`
+- When creating a vector of new values for a column do not include the column name
+- You first need to create a new vector of values for the new row/coloumn before adding it to the existing data frame
+- Print test_df
 
 *** =pre_exercise_code
 ```{r}
-
-
+test_df <- data.frame(numeric = c(1:2,NA,4:5), character = c("a","b","c","d","e"))
 ```
 
 *** =sample_code
 ```{r}
 
-# Index the first five rows of column Sepal.Width from iris using the `$` and bracket notation, assign it to a variable named index_one
+# View the data frame test_df
 
-# Print index_one
+# Create a new vector of values for the column character_2
 
+# Combine the column vector character_2 with the original data frame test_df
 
-#Index the column Petal.Width from iris with the column name using square bracket notation, assign it to a variable named index_two 
+# Create a new vector of values for the new row
 
-# Print index_two
+# Combine the row vector with the original data frame test_df
 
-
-# Return only the second column from iris in column form, assign it to a variable named index_three
-
-# Print index_three
-
-
-# Return only the second column from iris in column form, indexed on rows 1 to 5, assign it to a variable named index_four and print the new variable in the console
-
-# Print index_four
-
-
-# Return all but the first two columns from iris, assign it to a variable named index_five
-
-# Print index_five
-
+# Print test_df
 
 ```
 
 *** =solution
 ```{r}
 
-# Index the first five rows of column Sepal.Width using the `$` and bracket notation, assign it to a variable named index_one
+# View the data frame test_df
 
-index_one <- iris$Sepal.Width[1:5]
+test_df
 
-# Print index_one
+# Create a new vector of values for the column character_2
 
-index_one
+character_2 <- c("g","h","i","j","k")
 
-#Index the column Petal.Width from iris with the column name using square bracket notation, assign it to a variable named index_two 
+# Combine the column vector character_2 with the original data frame test_df
 
-index_two <- iris[,"Petal.Width"]
-# Print index_two
-index_two
+test_df$character_2 <- character_2
 
-# Return only the second column in column form, assign it to a variable named index_three
+# Create a new vector of values for the new row
 
-index_three <- iris[ 2 ]
+new_row <- c(6, "f","l")
 
-# Print index_three
+# Combine the row vector with the original data frame test_df
 
-index_three
+test_df <- rbind(test_df, new_row)
 
-# Return only the second column from iris in column form, indexed on rows 1 to 5, assign it to a variable named index_four
+# Print test_df
 
-index_four <- iris[1:5,2, drop = F]
-
-# Print index_four
-
-index_four
-
-# Return all but the first two columns in iris, assign it to a variable named index_five
-
-index_five <- iris[,-c(1,2)]
-
-# Print index_five
-
-index_five
+test_df
 
 ```
 
@@ -340,15 +279,9 @@ index_five
 # evaluate the student's response. All functions used here are defined in the 
 # testwhat R package. Documentation can also be found at github.com/datacamp/testwhat/wiki
 
-test_object("index_one")
-test_object("index_two")
-test_object("index_three")
-test_object("index_four")
+test_object("test_df")
+test_output_contains("test_df")
 
-test_output_contains("index_one")
-test_output_contains("index_two")
-test_output_contains("index_three")
-test_output_contains("index_four")
 
 # Test whether the student correctly used plot()
 # Again, we use the automatically generated feedback here
@@ -368,41 +301,69 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:751023a015
+--- type:NormalExercise lang:r xp:100 skills:1 key:420999c15f
 ## Applying Functions with Data Frames
 
-The $ notation is pretty handy, but it can become very annoying when you have to type it each time that you want to work with your data. The `attach()` function offers a solution to this. When you pass a data frame through the attach function you are then able to call the columns of the data frame without explicitely calling the data frame first.
+The last topic we will discuss with regards to data frames is applying functions to preform calculations with the data held in the data frame. We can use the `apply` function to perform different operations accross both the columns and rows in our data frame. 
 
-The notation for attach looks as follows
+The first argument in the `apply` function is the data.frame, the second is an indicator for how the calcuations will be preformed. A "1" indicates across rows while a "2" indicates across columns. The final input is the calculation you want done (mean, median, ect.)
 
-> attach(data.frame) 
-<br>column_name</br>
+
+For our excerises we will take a look at the iris data set once again.
 
 
 *** =instructions
-- Call the variable Petal.Width from the iris data frame using the attach function
+- Create a new dataset named iris2 with only numeric information 
+- Calculate the sum of each column and assign the output to a variable called sum_df, print sum_df
+- Determine the mean of each row and assign the output to a variable called mean_df, print mean_df
 
 *** =hint
-- You first need to pass the data frame through the attach function
+- Only the first four columns are numeric
+- You need to index the first four columns before preceding
+- the function for mean is `mean` and for sum is `sum`
 *** =pre_exercise_code
 ```{r}
-
+data(iris)
 ```
 
 *** =sample_code
 ```{r}
 
-# Call the variable Petal.Width from the iris data frame using the attach function
+# Create a new dataset named iris2 with only numeric information 
+
+# Calculate the sum for each column
+
+# Print sum_df
+
+# Calculate the mean of each row
+
+# Print mean_df
 
 ```
 
 *** =solution
 ```{r}
 
-# Call the variable Petal.Width from the iris data frame using the attach function
-attach(iris)
+# Create a new dataset named iris2 with only numeric information 
 
-Petal.Width
+iris2 <- iris[,1:4]
+
+# Calculate the sum for each column
+
+sum_df <- apply(iris2,2,sum)
+
+# Print sum_df
+
+sum_df
+
+# Calculate the mean of each row
+
+mean_df <- apply(iris2,1,mean)
+
+# Print mean_df
+
+mean_df
+
 ```
 
 *** =sct
@@ -411,8 +372,10 @@ Petal.Width
 # evaluate the student's response. All functions used here are defined in the 
 # testwhat R package. Documentation can also be found at github.com/datacamp/testwhat/wiki
 
-test_function("attach")
-test_output_contains("Petal.Width")
+test_function("apply")
+test_object("iris2")
+test_output_contains("sum_df")
+test_output_contains("mean_df")
 
 # Test whether the student correctly used plot()
 # Again, we use the automatically generated feedback here
